@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>California Housing Price Prediction</title>
+    <style>
+        /* General body styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 110vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Form container */
+        .login {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 370px;
+            text-align: center;
+        }
+
+        /* Form title */
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Input fields */
+        input {
+            width: 95%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Submit button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #09cd88;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Scroll to result section when targeted */
+        #result:target {
+            scroll-margin-top: 20px; /* Ensures it appears at the top */
+        }
+
+        /* Prediction result */
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>California Housing Price Prediction</h1>
+        <form action="{{ url_for('Prediction') }}" method="post">
+            <input type="text" name="MedInc" placeholder="Median income of households in block ($10,000s)" required />
+            <input type="text" name="HouseAge" placeholder="Median house age in block (years)" required />
+            <input type="text" name="AveRooms" placeholder="Average number of rooms per household" required />
+            <input type="text" name="AveBedrms" placeholder="Average number of bedrooms per household" required />
+            <input type="text" name="Population" placeholder="Block population" required />
+            <input type="text" name="AveOccup" placeholder="Average number of people per household" required />
+            <input type="text" name="Latitude" placeholder="Block latitude(-90° to 90°)" required />
+            <input type="text" name="Longitude" placeholder="Block longitude(-180° to +180°)" required />
+            
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    {% if results %}
+    <div class="result">
+        <h1>The Price of house is : {{ results }} $</h1>
+    </div>
+    {% endif %}
+
+</body>
+</html>
