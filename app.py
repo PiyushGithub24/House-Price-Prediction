@@ -9,8 +9,7 @@ with open('models\\model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 
-application=Flask(__name__)
-app=application
+app=Flask(__name__)
 
 @app.route('/')
 @app.route('/prediction',methods=['GET','POST'])
